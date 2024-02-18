@@ -1,0 +1,25 @@
+.wordCount {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  font-size: 15px;
+  color: var(--gray-400);
+  background: var(--gray-50);
+  width: fit-content;
+  margin: 0 0 0 auto;
+  border-radius: var(--radius-sm);
+  user-select: none;
+  overflow: hidden;
+}
+.words,
+.limit {
+  padding: var(--space-sm) var(--space-md);
+}
+.limit {
+  box-shadow: inset -1px 0 var(--gray-200);
+}
+.limit.warning {
+  color: var(--error-600);
+  background: var(--error-50);
+}

@@ -1,0 +1,14 @@
+.editorMenuBar,
+.editorMenuBarButtonGroup {
+  display: flex;
+}
+.editorMenuBar {
+  border: var(--border-light);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  overflow: hidden;
+}
+.editorMenuBarButtonGroup {
+  box-shadow: inset -1px 0 var(--gray-200);
+  flex-shrink: 0;
+  padding: 0 var(--space-xs);
+}
