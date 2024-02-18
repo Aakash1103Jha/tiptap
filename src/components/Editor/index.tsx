@@ -2,23 +2,29 @@ import { memo } from "react";
 import { useEditor, EditorContent, BubbleMenu, FloatingMenu, Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import CharacterCount from "@tiptap/extension-character-count";
+import TextAlign from "@tiptap/extension-text-align";
+import FontFamily from "@tiptap/extension-font-family";
+import TextStyle from "@tiptap/extension-text-style";
 
 import styles from "./editor.module.css";
 
 import MenuBar from "./MenuBar";
 import WordCount from "./WordCount";
 
-const limit = 20;
-
-export default memo(function Editor({
-  htmlContent,
-  onContentChange,
-  id,
-}: {
+export type TextEditorPropType = {
   id: string;
   htmlContent: string;
   onContentChange: (editor: Editor) => void;
-}) {
+  characterLimit?: number;
+  showWordCount?: boolean;
+};
+export default memo(function TextEditor({
+  htmlContent,
+  onContentChange,
+  id,
+  characterLimit,
+  showWordCount,
+}: TextEditorPropType) {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -27,8 +33,20 @@ export default memo(function Editor({
             class: "blockquote",
           },
         },
+        listItem: {
+          HTMLAttributes: {
+            class: styles.listItem,
+          },
+        },
       }),
-      CharacterCount.configure({ limit, mode: "textSize" }),
+      CharacterCount.configure({ limit: characterLimit, mode: "textSize" }),
+      TextAlign.configure({
+        alignments: ["left", "center", "right", "justify"],
+        types: ["heading", "paragraph"],
+        defaultAlignment: "left",
+      }),
+      FontFamily,
+      TextStyle,
     ],
     editorProps: {
       attributes: {
@@ -48,7 +66,7 @@ export default memo(function Editor({
     <div className={`${styles.editorContainer}`} id={id}>
       {editor ? <MenuBar editor={editor} /> : false}
       <EditorContent editor={editor} className={`${styles.editor}`} />
-      {editor ? <WordCount editor={editor} limit={limit} /> : false}
+      {editor && showWordCount ? <WordCount editor={editor} limit={characterLimit} /> : false}
     </div>
     // <div
     //   style={{

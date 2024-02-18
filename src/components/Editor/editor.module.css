@@ -7,3 +7,6 @@
 .editor {
   padding: var(--space-md);
 }
+.listItem {
+  list-style-position: inside;
+}

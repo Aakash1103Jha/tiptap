@@ -1,0 +1,5 @@
+.menuDropdown {
+  appearance: none;
+  border: none;
+  padding: 0 var(--space-sm);
+}

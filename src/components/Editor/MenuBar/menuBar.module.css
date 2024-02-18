@@ -3,6 +3,7 @@
   display: flex;
 }
 .editorMenuBar {
+  flex-wrap: wrap;
   border: var(--border-light);
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   overflow: hidden;
