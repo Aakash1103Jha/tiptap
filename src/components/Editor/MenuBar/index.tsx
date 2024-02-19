@@ -12,6 +12,7 @@ import TextAlignment from "@/config/textAlignment.json";
 import changeHeadingLevel from "@/helpers/changeHeadingLevel";
 import changeFontFamily from "@/helpers/changeFontFamily";
 import changeTextAlignment, { TextAlignmentOption } from "@/helpers/changeTextAlignment";
+import { handleImageSelection } from "@/helpers/handleFiles";
 
 export default memo(function MenuBar({ editor }: { editor: Editor }) {
   return (
@@ -86,6 +87,12 @@ export default memo(function MenuBar({ editor }: { editor: Editor }) {
             biName={biName}
           />
         ))}
+      </ButtonGroup>
+      <ButtonGroup id="media">
+        <span>
+          <MenuButton biName="image" onClick={() => handleImageSelection(editor, "insert-image")} />
+          <input hidden type="file" id="insert-image" />
+        </span>
       </ButtonGroup>
     </header>
   );

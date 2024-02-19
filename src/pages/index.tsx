@@ -8,9 +8,9 @@ export default function Home() {
     setContent(editor.getHTML());
   }
   return (
-    <main style={{ padding: "1rem" }}>
-      <TextEditor id="main" htmlContent={content} onContentChange={onUpdate} showWordCount />
-      <div className="output" dangerouslySetInnerHTML={{ __html: content }} />
+    <main style={{ padding: "1rem", display: "flex" }}>
+      <TextEditor style={{ flex: 1 }} id="main" htmlContent={content} onContentChange={onUpdate} showWordCount />
+      <div className="output" dangerouslySetInnerHTML={{ __html: content }} style={{ flex: 1 }} />
     </main>
   );
 }

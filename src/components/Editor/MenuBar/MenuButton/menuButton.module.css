@@ -10,7 +10,7 @@
   width: fit-content;
 }
 .menuButton:hover {
-  background: var(--gray-50);
+  background: var(--gray-100);
 }
 .menuButton:active {
   background: var(--gray-300);

@@ -4,8 +4,9 @@
 }
 .editorMenuBar {
   flex-wrap: wrap;
-  border: var(--border-light);
+  border-bottom: var(--border-light);
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--gray-50);
   overflow: hidden;
 }
 .editorMenuBarButtonGroup {

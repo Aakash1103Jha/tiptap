@@ -3,10 +3,23 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
+  border: var(--border-light);
+  border-radius: var(--radius-md);
 }
 .editor {
   padding: var(--space-md);
+  /* background: var(--gray-50); */
+  min-height: 10rem;
+  max-height: 20rem;
+  height: 100%;
+  overflow: auto;
 }
 .listItem {
   list-style-position: inside;
+}
+.image {
+  max-height: 15rem;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
