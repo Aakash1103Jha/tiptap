@@ -1,0 +1,8 @@
+[
+  { "id": "poppins", "label": "Poppins", "value": "Poppins" },
+  { "id": "arial", "label": "Arial", "value": "Arial" },
+  { "id": "tnr", "label": "Times New Roman", "value": "Times New Roman" },
+  { "id": "cn", "label": "Courier New", "value": "Courier New" },
+  { "id": "georgia", "label": "Georgia", "value": "Georgia" },
+  { "id": "verdana", "label": "Verdana", "value": "Verdana" }
+]

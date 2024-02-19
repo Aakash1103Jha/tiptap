@@ -1,0 +1,6 @@
+[
+  { "id": "p", "label": "Body", "value": "0" },
+  { "id": "h1", "label": "Heading 1", "value": "1" },
+  { "id": "h2", "label": "Heading 2", "value": "2" },
+  { "id": "h3", "label": "Heading 3", "value": "3" }
+]

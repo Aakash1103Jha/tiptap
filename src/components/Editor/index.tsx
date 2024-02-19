@@ -10,6 +10,7 @@ import styles from "./editor.module.css";
 
 import MenuBar from "./MenuBar";
 import WordCount from "./WordCount";
+import Typography from "@tiptap/extension-typography";
 
 export type TextEditorPropType = {
   id: string;
@@ -45,8 +46,23 @@ export default memo(function TextEditor({
         types: ["heading", "paragraph"],
         defaultAlignment: "left",
       }),
-      FontFamily,
+      FontFamily.configure({
+        types: ["textStyle"],
+      }),
       TextStyle,
+      Typography.configure({
+        closeDoubleQuote: "”",
+        openDoubleQuote: "“",
+        closeSingleQuote: "’",
+        openSingleQuote: "‘",
+        copyright: "©",
+        ellipsis: "…",
+        emDash: "—",
+        trademark: "™",
+        leftArrow: "←",
+        rightArrow: "→",
+        registeredTrademark: "®",
+      }),
     ],
     editorProps: {
       attributes: {
@@ -68,20 +84,6 @@ export default memo(function TextEditor({
       <EditorContent editor={editor} className={`${styles.editor}`} />
       {editor && showWordCount ? <WordCount editor={editor} limit={characterLimit} /> : false}
     </div>
-    // <div
-    //   style={{
-    //     border: "1px solid #eee",
-    //     borderRadius: "0.3rem",
-    //     maxWidth: "40rem",
-    //     width: "100%",
-    //     margin: "0 auto",
-    //   }}
-    // >
-    //   {!editor ? false : <Bubble editor={editor} />}
-    //   {!editor ? false : <Floating editor={editor} />}
-    //   <EditorContent editor={editor} style={{ padding: "1rem" }} />
-    //   {!editor ? false : <CharacterCounter editor={editor} />}
-    // </div>
   );
 });
 function Bubble({ editor }: { editor: Editor }) {

@@ -6,10 +6,14 @@ import styles from "./menuBar.module.css";
 import MenuButton from "./MenuButton";
 import MenuDropdown from "./MenuDropdown";
 
+import HeadingLevels from "@/config/headingLevels.json";
+import FontFamily from "@/config/fontFamily.json";
+import TextAlignment from "@/config/textAlignment.json";
+import changeHeadingLevel from "@/helpers/changeHeadingLevel";
+import changeFontFamily from "@/helpers/changeFontFamily";
+import changeTextAlignment, { TextAlignmentOption } from "@/helpers/changeTextAlignment";
+
 export default memo(function MenuBar({ editor }: { editor: Editor }) {
-  function onFontFamilyChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    editor.chain().focus().setFontFamily(event.target.value).run();
-  }
   return (
     <header className={`${styles.editorMenuBar}`}>
       <ButtonGroup id="undo-redo">
@@ -27,18 +31,7 @@ export default memo(function MenuBar({ editor }: { editor: Editor }) {
         />
       </ButtonGroup>
       <ButtonGroup id="fonts">
-        <MenuDropdown
-          onChange={onFontFamilyChange}
-          options={[
-            { id: "poppins", label: "Poppins", value: "Poppins" },
-            { id: "arial", label: "Arial", value: "Arial" },
-            { id: "tnr", label: "Times New Roman", value: "Times New Roman" },
-            { id: "cn", label: "Courier New", value: "Courier New" },
-            { id: "georgia", label: "Georgia", value: "Georgia" },
-            { id: "verdana", label: "Verdana", value: "Verdana" },
-          ]}
-          id="font-family"
-        />
+        <MenuDropdown onChange={(e) => changeFontFamily(editor, e)} options={FontFamily} id="font-family" />
       </ButtonGroup>
       <ButtonGroup id="b-i-u-s">
         <MenuButton
@@ -59,32 +52,15 @@ export default memo(function MenuBar({ editor }: { editor: Editor }) {
           biName="type-strikethrough"
           onClick={() => editor.chain().focus().toggleStrike().run()}
         />
+        <MenuButton
+          title="Blockquote"
+          id="blockquote"
+          biName="quote"
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+        />
       </ButtonGroup>
       <ButtonGroup id="heading-levels">
-        <MenuButton
-          title="Heading 1"
-          id="h1"
-          biName="type-h1"
-          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-        />
-        <MenuButton
-          title="Heading 2"
-          id="h2"
-          biName="type-h2"
-          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-        />
-        <MenuButton
-          title="Heading 3"
-          id="h3"
-          biName="type-h3"
-          onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-        />
-        <MenuButton
-          title="Paragraph"
-          id="p"
-          biName="paragraph"
-          onClick={() => editor.chain().focus().setParagraph().run()}
-        />
+        <MenuDropdown onChange={(e) => changeHeadingLevel(editor, e)} options={HeadingLevels} id="headings" />
       </ButtonGroup>
       <ButtonGroup id="lists">
         <MenuButton
@@ -101,30 +77,15 @@ export default memo(function MenuBar({ editor }: { editor: Editor }) {
         />
       </ButtonGroup>
       <ButtonGroup id="text-align">
-        <MenuButton
-          title="Align Left"
-          id="justify-left"
-          biName="text-left"
-          onClick={() => editor.chain().focus().setTextAlign("left").run()}
-        />
-        <MenuButton
-          title="Align Center"
-          id="justify-center"
-          biName="text-center"
-          onClick={() => editor.chain().focus().setTextAlign("center").run()}
-        />
-        <MenuButton
-          title="Align Right"
-          id="justify-right"
-          biName="text-right"
-          onClick={() => editor.chain().focus().setTextAlign("right").run()}
-        />
-        <MenuButton
-          title="Justify"
-          id="justify-text"
-          biName="justify"
-          onClick={() => editor.chain().focus().setTextAlign("justify").run()}
-        />
+        {TextAlignment.map(({ biName, id, title }) => (
+          <MenuButton
+            key={id}
+            id={id}
+            title={title}
+            onClick={() => changeTextAlignment(editor, id as TextAlignmentOption)}
+            biName={biName}
+          />
+        ))}
       </ButtonGroup>
     </header>
   );

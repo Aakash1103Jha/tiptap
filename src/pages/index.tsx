@@ -9,7 +9,7 @@ export default function Home() {
   }
   return (
     <main style={{ padding: "1rem" }}>
-      <TextEditor id="main" htmlContent={content} onContentChange={onUpdate} />
+      <TextEditor id="main" htmlContent={content} onContentChange={onUpdate} showWordCount />
       <div className="output" dangerouslySetInnerHTML={{ __html: content }} />
     </main>
   );

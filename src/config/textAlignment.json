@@ -1,0 +1,6 @@
+[
+  { "title": "Align Left", "id": "left", "biName": "text-left" },
+  { "title": "Align Center", "id": "center", "biName": "text-center" },
+  { "title": "Align Right", "id": "right", "biName": "text-right" },
+  { "title": "Justify", "id": "justify", "biName": "justify" }
+]
