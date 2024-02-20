@@ -1,16 +1,19 @@
-import TextEditor from "@/components/Editor";
-import { Editor } from "@tiptap/react";
-import { useState } from "react";
+import { Uploader, useUploadContext } from "@/context/UploadContext";
+import Link from "next/link";
+import { useEffect } from "react";
+
+const uploader = new Uploader();
 
 export default function Home() {
-  const [content, setContent] = useState("");
-  function onUpdate(editor: Editor) {
-    setContent(editor.getHTML());
-  }
+  const { addUploader } = useUploadContext();
+  useEffect(() => {
+    addUploader(uploader);
+  }, [addUploader]);
+
   return (
-    <main style={{ padding: "1rem", display: "flex" }}>
-      <TextEditor style={{ flex: 1 }} id="main" htmlContent={content} onContentChange={onUpdate} showWordCount />
-      <div className="output" dangerouslySetInnerHTML={{ __html: content }} style={{ flex: 1 }} />
+    <main>
+      <h3>home</h3>
+      <Link href="/about">about</Link>
     </main>
   );
 }

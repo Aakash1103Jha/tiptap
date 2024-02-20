@@ -124,3 +124,15 @@
 ::-webkit-scrollbar-thumb {
   background: var(--gray-300);
 }
+
+.uploader-list {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: flex;
+}
+.uploader-list-item {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
