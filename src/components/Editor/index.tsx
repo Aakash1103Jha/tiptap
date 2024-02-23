@@ -3,11 +3,13 @@ import { useEditor, EditorContent, BubbleMenu, FloatingMenu, Editor } from "@tip
 import StarterKit from "@tiptap/starter-kit";
 import CharacterCount from "@tiptap/extension-character-count";
 import TextAlign from "@tiptap/extension-text-align";
-import FontFamily from "@tiptap/extension-font-family";
+// import FontFamily from "@tiptap/extension-font-family";
 import TextStyle from "@tiptap/extension-text-style";
 import Typography from "@tiptap/extension-typography";
 import FileHandler from "@tiptap-pro/extension-file-handler";
 import Image from "@tiptap/extension-image";
+import Placeholder from "@tiptap/extension-placeholder";
+import Dropcursor from "@tiptap/extension-dropcursor";
 
 import styles from "./editor.module.css";
 
@@ -51,9 +53,9 @@ export default memo(function TextEditor({
         types: ["heading", "paragraph"],
         defaultAlignment: "left",
       }),
-      FontFamily.configure({
-        types: ["textStyle"],
-      }),
+      // FontFamily.configure({
+      //   types: ["textStyle"],
+      // }),
       TextStyle,
       Typography.configure({
         closeDoubleQuote: "”",
@@ -82,6 +84,12 @@ export default memo(function TextEditor({
           handleFilePaste(editor as Editor, files, pasteContent);
         },
       }),
+      Placeholder.configure({
+        emptyEditorClass: styles.placeholder,
+        emptyNodeClass: styles.placeholder,
+        placeholder: "Type something...",
+      }),
+      Dropcursor,
     ],
     editorProps: {
       attributes: {

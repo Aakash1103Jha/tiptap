@@ -23,3 +23,10 @@
   width: 100%;
   object-fit: contain;
 }
+.editor .placeholder::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
